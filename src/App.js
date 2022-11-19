@@ -1,13 +1,30 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import './App.css';
 import pokemon from './pokemon.json';
+
+const PokemonRow=({pokemon})=>(
+  <tr>
+    <td>{pokemon.name.english}</td>
+    <td>{pokemon.type.join(", ")}</td>
+  </tr>
+);
+
+PokemonRow.propTypes={
+  Pokemon: PropTypes.shape({
+    name: PropTypes.shape({
+      english:PropTypes.string,
+    }),
+    type: PropTypes.arrayOf(PropTypes.string),
+  }),
+};
 
 function App() {
   return (
     <div
       style={{
         margin:"auto",
-        width:1000,
+        width:800,
         paddingTop:"1rem"
       }}
     >
@@ -23,10 +40,7 @@ function App() {
           {pokemon
           .slice(0, 20)
             .map(pokemon=>(
-            <tr key={pokemon.id}>
-              <td>{pokemon.name.english}</td>
-              <td>{pokemon.type.join(", ")}</td>
-            </tr>
+            <PokemonRow pokemon={pokemon} key={pokemon.id}/>
           ))}
           
         </tbody>

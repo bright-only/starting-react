@@ -1,1 +1,1 @@
- this chapter iterationg a list on the table fro vid2
+ this chapter create a component vid2
